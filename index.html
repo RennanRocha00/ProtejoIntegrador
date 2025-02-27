@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+/* Estilo geral do header */
+header {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.hamburger-menu .bar {
+    width: 30px;
+    height: 5px;
+    background-color: black;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Estilo para o menu */
+.nav-menu {
+    position: fixed;
+    left: -250px; /* Começa fora da tela */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease-in-out;
+    padding-top: 50px;
+    overflow-y: auto; /* Adiciona rolagem caso o menu ultrapasse a altura da tela */
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    padding: 15px;
+    text-align: left;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.nav-menu li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/* Estilo quando o menu está aberto */
+.nav-menu.open {
+    left: 0; /* Quando a classe 'open' for adicionada, o menu se move para a tela */
+}
+
+/* Estilo geral do header */
+header {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 10; /* Garante que o header fique na frente de outros elementos */
+}
+
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.hamburger-menu .bar {
+    width: 30px;
+    height: 5px;
+    background-color: black;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Estilo para o menu */
+.nav-menu {
+    position: fixed;
+    left: -250px; /* Começa fora da tela */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease-in-out;
+    padding-top: 50px;
+    z-index: 1000; /* Garante que o menu fique na frente de outros elementos */
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    padding: 15px;
+    text-align: left;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.nav-menu li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/* Estilo quando o menu está aberto */
+.nav-menu.open {
+    left: 0; /* Quando a classe 'open' for adicionada, o menu se move para a tela */
+}
+
+/* Estilo do vídeo */
+.hero {
+    position: relative;
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    text-align: center;
+    color: #fff;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    z-index: 1; /* Garante que o vídeo fique atrás do menu */
+}
+
+.hero h1, .hero p, .hero .btn {
+    position: relative;
+    z-index: 2; /* Garante que o texto fique acima do vídeo */
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.hero .btn {
+    background-color: #0051ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+
+       
+        #beneficios, #estilos, #historia, #outros-estilos {
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .beneficios-grid, .estilos-grid, .historia-grid, .outros-estilos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .beneficio, .estilo, .historia, .outro-estilo {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .beneficio img, .estilo img, .historia img, .outro-estilo img {
+            margin-bottom: 15px;
+        }
+
+        .beneficio h3, .estilo h3, .historia h3, .outro-estilo h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .beneficio p, .estilo p, .historia p, .outro-estilo p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #007bff;
+            margin: 0 10px;
+        }
+        .historia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.historia {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.historia img {
+    margin-bottom: 15px;
+}
+
+.historia h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.historia p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+        .loja {
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .loja-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .produto {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .produto img {
+            margin-bottom: 15px;
+        }
+
+        .produto h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .produto p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .produto .btn {
+            background-color: #0051ff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .video-container {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px; 
+    margin: 0 auto; 
+}
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px; 
+}
+    </style>
+    <title>Dance World - Loja de Roupas</title>
+</head>
+<body>
+    <header>
+        <img src="logo dance 1.0.png" width="150">
+        <br> <br>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav id="nav-menu" class="nav-menu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#historia">História</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#estilos">Estilos</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="#loja">Loja</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+
+    <section id="home">
+        <div class="hero">
+            <video autoplay muted loop>
+                <source src="dancatakitaki.mp4" type="video/mp4">
+            </video>
+            <h1>Sinta a música, mova o corpo!</h1>
+            <p>Descubra os benefícios da dança e explore o mundo do Hip Hop, Danca Contemporânea e Kpop com a Dance World</p>
+            <a href="#estilos" class="btn">Torne Se Um Instrutor!</a>
+        </div>
+    </section>
+
+    <section id="historia">
+        <h2>História da Dance World</h2>
+        <div class="historia-grid">
+            <article class="historia">
+                <img src="Captura de tela 2024-06-28 151739.png" alt="História da Dance World">
+                <h3>Nossa Fundação</h3>
+                <p>Desde a sua fundação no ano 2000, a Dance World nasceu de um sonho: espalhar a paixão pela dança e fazer a diferença na vida das pessoas. Com a missão de trazer alegria e expressão artística a todos, criamos um espaço onde dançarinos de todas as idades e habilidades podem explorar seu potencial e se desenvolver.</p>
+            </article>
+            <article class="historia">
+                <img src="1million.jpg" alt="História da Dance World">
+                <h3>Aulas e Eventos</h3>
+                <p>Oferecemos uma vasta gama de aulas, desde o ballet clássico até o hip-hop moderno, sempre com a intenção de proporcionar experiências enriquecedoras. Nossos instrutores, além de altamente qualificados, são dedicados e apaixonados pelo que fazem, criando um ambiente acolhedor e encorajador. Os eventos anuais e competições que organizamos são oportunidades incríveis para nossos alunos brilharem no palco, demonstrando suas habilidades e construindo confiança.</p>
+            </article>
+            <article class="historia">
+                <img src="dance.png" alt="História da Dance World">
+                <h3>Compromisso com a Comunidade</h3>
+                <p>Estamos profundamente comprometidos com a nossa comunidade, participando de várias iniciativas e programas de alcance. Levamos a dança para escolas, lares de idosos e eventos comunitários, sempre com o objetivo de unir pessoas e transformar vidas através da arte. Na Dance World, acreditamos que a dança deve ser acessível a todos, independentemente da situação financeira, e trabalhamos continuamente para que isso seja possível. Venha fazer parte desta história conosco!</p>
+            </article>
+        </div>
+    </section>
+    
+    <section id="beneficios">
+        <h2>Benefícios da Dança</h2>
+        <div class="beneficios-grid">
+            <div class="beneficio">
+                <img src="saudemental.jpg" alt="Saúde Mental">
+                <h3>Saúde Mental</h3>
+                <p>Reduz o estresse, ansiedade e sintomas depressivos.</p>
+            </div>
+            <div class="beneficio">
+                <img src="Sedentarismo.jpg" alt="Combate ao Sedentarismo">
+                <h3>Combate ao Sedentarismo</h3>
+                <p>Melhora o condicionamento físico e a qualidade de vida.</p>
+            </div>
+            <div class="beneficio">
+                <img src="coordenacao.jpg" alt="Coordenação Motora">
+                <h3>Coordenação Motora</h3>
+                <p>Aprimora a agilidade, equilíbrio e propriocepção.</p>
+            </div>
+            <div class="beneficio">
+                <img src="autoestima.jpg" alt="Autoestima">
+                <h3>Autoestima</h3>
+                <p>Aumenta a confiança, autoimagem e autoestima.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="estilos">
+        <h2>Explore os Estilos</h2>
+        <div class="estilos-grid">
+            <div class="estilo">
+                <div class="texto">
+                    <h3>Hip Hop</h3>
+                    <p>Energia, ritmo e expressão urbana.</p>
+                </div>
+                <div class="video-container">
+                    <video controls poster="thumbhiphop (1).jpg">
+                        <source src="Silentó - Watch Me (Whip_Nae Nae) (Official).mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="estilo">
+                <div class="texto">
+                    <h3>Contemporâneo</h3>
+                    <p>Emoção, fluidez e conexão com o corpo.</p>
+                </div>
+                <div class="video-container">
+                    <video controls poster="thumbcontemporaneo (1).jpg">
+                        <source src="Coreografia Dança Contemporânea - Lovely - (Billie Eilish).mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="estilo">
+                <div class="texto">
+                    <h3>Kpop</h3>
+                    <p>Coreografias contagiantes e música vibrante.</p>
+                </div>
+                <div class="video-container">
+                    <video controls poster="thumbkpop.jpg">
+                        <source src="videokpop.mp4.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="outros-estilos">
+        <h2>Outros Estilos de Dança</h2>
+        <div class="outros-estilos-grid">
+            <div class="outro-estilo">
+                <img src="ballet.jpg" alt="Ballet">
+                <h3>Ballet</h3>
+                <p>Graça, técnica e disciplina clássica.</p>
+            </div>
+            <div class="outro-estilo">
+                <img src="salsa.jpg" alt="Salsa">
+                <h3>Salsa</h3>
+                <p>Ritmo latino e movimentos apaixonantes.</p>
+            </div>
+            <div class="outro-estilo">
+                <img src="jazz.jpg" alt="Jazz">
+                <h3>Jazz</h3>
+                <p>Energia, estilo e performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="loja">
+        <h2> Loja de Roupas</h2>
+        <div class="loja-grid">
+            <div class="produto">
+                <img src="conjuntofit.jpg" alt="Roupa Fit 1">
+                <h3>Conjuntos Fitness</h3>
+                <p>Conjunto de roupas fitness confortável e estiloso.</p>
+                <button class="btn">Comprar Agora</button>
+            </div>
+            <div class="produto">
+                <img src="roupadanca (1).jpg" alt="Roupa de Dança 2">
+                <h3>Roupas de Dança</h3>
+                <p>Roupas ideais para aulas de dança contemporânea</p>
+                <button class="btn">Comprar Agora</button>
+            </div>
+            <div class="produto">
+                <img src="leggingdanca.jpg" alt="Roupa Fit 3">
+                <h3>Leggings Fitness</h3>
+                <p>Legging de alta compressão para treinos intensos.</p>
+                <button class="btn">Comprar Agora</button>
+  </div>
+  <div class="produto">
+    <img src="acessoriosfit.jpg" alt="Produto Fit 4">
+    <h3>Acessórios de Dança</h3>
+    <p>Acessorios para dancar</p>
+    <button class="btn">Comprar Agora</button>
+</div>
+<br> <br>
+<div class="produto">
+    <img src="esteirafit.jpg" alt="Produto Fit 5">
+    <h3>Equipamentos Para Treino</h3>
+    <p>Equipamentos Para Treinos</p>
+    <button class="btn">Comprar Agora</button>
+</div>
+<div class="produto">
+    <img src="cremefit.jpg" alt="Produto Fit 6">
+    <h3>Produtos de bem-estar</h3>
+    <p>Produtos de bem estar</p>
+    <button class="btn">Comprar Agora</button>
+</div>
+    </section>
+
+    <footer id="contato">
+        <p>Entre em contato conosco:</p>
+        <p>Email: contato@danceworld.com</p>
+        <p>Telefone: (11) 3357-9876</p>
+        <p>Siga-nos nas redes sociais:</p>
+        <a href="https://pt-br.facebook.com/">Facebook</a> 
+        <a href="https://www.instagram.com/">Instagram</a> 
+        <a href="https://x.com/">Twitter</a>
+        <p>Desenvolvido por Renan Rocha®</p>
+    </footer>
+    <script>
+        // Função para alternar o menu
+        document.getElementById("hamburger-menu").addEventListener("click", function() {
+            document.getElementById("nav-menu").classList.toggle("open");
+            document.querySelectorAll(".hamburger-menu .bar").forEach(function(bar) {
+                bar.classList.toggle("active");
+            });
+        });
+        </script>
+</body>
+</html>
